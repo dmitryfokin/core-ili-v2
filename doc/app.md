@@ -20,17 +20,29 @@
 
 - sequelize-cli
 - @types/dotenv
+- @types/express
+- @types/node
+- concurrently
+- nodemon
+- typescript
 
 #### ---save
 
 - pg
 - sequelize
 - pg-hstore
-- dotenv 
+- dotenv
+- express 
 
 ### Конфигурация
 
+## Sequelize
 
+Файл .sequelizerc содержит настройки миграции БД
+Файл .env - основной файл значений конфигурации
+- DEV_DATABASE_URL строка подключения к БД в виде url
+- DEV_EXPRESS_PORT=3000 - порт Express
+ 
 
 ### База данных
 
@@ -41,7 +53,7 @@
 
 ### Модели
 
-### Модель User
+#### Модель User
 
 Поля:
 id: uuid - уникальный идентификатор

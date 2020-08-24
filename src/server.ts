@@ -1,8 +1,15 @@
 import * as express from 'express'
+import * as dotenv from "dotenv"
+
+dotenv.config()
+
+import { configDB } from './db/config'
+import { sequelizeInit } from './db/models'
+
+const env = process.env.NODE_ENV || 'development'
+const PORT = process.env.DEV_EXPRESS_PORT || 3000
 
 const app: express.Application = express()
-
-const PORT: number = 3000
 
 
 app.get( '/', ( request: express.Request, response: express.Response ): void => {
@@ -12,6 +19,10 @@ app.get( '/', ( request: express.Request, response: express.Response ): void => 
 
 async function start() {
   try {
+    const db = sequelizeInit( configDB )
+    await db.sequelize.authenticate()
+    console.log( 'Sequelize connection has been established successfully.' )
+
     app.listen( PORT, () => {
       console.log( `Server has been started on port ${PORT}...` )
     } )

@@ -9,16 +9,22 @@
     "watch-ts": "tsc -w"
   },
   "keywords": [],
-  "author": "",
+  "author": "Dmitry Fokin <dkoder.dvl@gmail.com>",
   "license": "ISC",
   "devDependencies": {
+    "@types/dotenv": "^8.2.0",
     "@types/express": "^4.17.7",
     "@types/node": "^14.6.0",
     "concurrently": "^5.3.0",
     "nodemon": "^2.0.4",
+    "sequelize-cli": "^6.2.0",
     "typescript": "^3.9.7"
   },
   "dependencies": {
-    "express": "^4.17.1"
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "pg": "^8.3.2",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^6.3.4"
   }
 }
