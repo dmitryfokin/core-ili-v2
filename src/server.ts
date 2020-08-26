@@ -4,12 +4,14 @@ import * as dotenv from "dotenv"
 dotenv.config()
 
 import { configDB } from './db/config'
-import { sequelizeInit } from './db/models'
+import { db, dbInit } from './db/models'
 
 const env = process.env.NODE_ENV || 'development'
 const PORT = process.env.DEV_EXPRESS_PORT || 3000
 
 const app: express.Application = express()
+
+app.use( express.json() )
 
 
 app.get( '/', ( request: express.Request, response: express.Response ): void => {
@@ -19,7 +21,7 @@ app.get( '/', ( request: express.Request, response: express.Response ): void => 
 
 async function start() {
   try {
-    const db = sequelizeInit( configDB )
+    dbInit( configDB )
     await db.sequelize.authenticate()
     console.log( 'Sequelize connection has been established successfully.' )
 

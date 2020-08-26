@@ -1,25 +1,23 @@
-import {
-  Sequelize,
-  DataTypes,
-} from "sequelize"
+import * as Sequelize from "sequelize"
 
-import { UserFactory } from './user'
+import { UserAttributes, UserCreationAttributes, UserFactory } from './user'
 
-export const sequelizeInit = ( configSequelize: any ) => {
+type dbType = {
+  sequelize?: Sequelize.Sequelize
+  User?: Sequelize.ModelDefined<UserAttributes, UserCreationAttributes>
+}
 
-  const sequelize = new Sequelize( configSequelize.url, configSequelize )
+export const db: dbType = {}
 
-  const db = {
-    sequelize,
-    Sequelize,
-    User: UserFactory( sequelize, DataTypes ),
-  }
+export const dbInit = ( configSequelize: any ) => {
+  db.sequelize = new Sequelize.Sequelize( configSequelize.url, configSequelize )
 
-  Object.keys( db ).forEach( modelName => {
-    if ( db[modelName].associate ) {
-      db[modelName].associate( db )
-    }
-  } )
+  UserFactory()
+  db.User = db.sequelize.models.User
 
-  return db
+  //  Object.keys( db ).forEach( modelName => {
+  //   if ( db[modelName].associate ) {
+  //     db[modelName].associate( db )
+  //   }
+  // } )
 }
