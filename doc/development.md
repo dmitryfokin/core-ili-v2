@@ -30,7 +30,7 @@
 #### + процедура аутетификации
 
 ---
-## - Развертывание React app + Typescript + Mobx
+## * Развертывание React app + Typescript + Mobx
 #### - установка react-app-typescript 
 #### - скрипт запуска разработки frontend части 
 #### - Подключение Materialize
