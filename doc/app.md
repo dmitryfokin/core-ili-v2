@@ -3,16 +3,17 @@
 ## Стек технологий
 ### backend
 
+- Typescript 
 - Express
 - Postgresql
 - JWT
-- Typescript 
 
 ### frontend
 
+- Typescript
 - ReactJS
 - MobX
-- Typescript
+- Materialize
 
 ## Backend
 ### Пакеты
@@ -22,6 +23,8 @@
 - @types/dotenv
 - @types/express
 - @types/node
+- @types/bcryptjs
+- @types/jsonwebtoken
 - concurrently
 - nodemon
 - typescript
@@ -32,9 +35,17 @@
 - sequelize
 - pg-hstore
 - dotenv
-- express 
+- express
+- jsonwebtoken
+- bcryptjs
+- uuid
 
 ### Конфигурация
+
+Файл .env - основной файл значений конфигурации
+- DEV_DATABASE_URL строка подключения к БД в виде url
+- DEV_EXPRESS_PORT=3000 - порт Express
+- JWT_SECRET=B@RB@R@
 
 ## Sequelize
 
@@ -59,9 +70,8 @@
 id: uuid - уникальный идентификатор
 name: string - Представление пользователя
 email: string - уникальное поле
-paramsJSONB: JSONB - 
+paramsJSONB: JSONB - набор второстепенных параметров
 -  password: string
--  refreshJWT: uuid
 
 
 ## Frontend

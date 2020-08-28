@@ -5,6 +5,8 @@ dotenv.config()
 
 import { configDB } from './db/config'
 import { db, dbInit } from './db/models'
+import { authMiddleware, authRouter } from './routes/auth.route'
+import { apiRouter } from './routes/api.route'
 
 const env = process.env.NODE_ENV || 'development'
 const PORT = process.env.DEV_EXPRESS_PORT || 3000
@@ -13,11 +15,9 @@ const app: express.Application = express()
 
 app.use( express.json() )
 
-
-app.get( '/', ( request: express.Request, response: express.Response ): void => {
-  response.send( 'Hello world!!!' )
-} )
-
+app.use( '/auth', authRouter )
+app.use( authMiddleware )
+app.use( '/api', apiRouter )
 
 async function start() {
   try {

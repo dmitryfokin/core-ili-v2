@@ -3,7 +3,6 @@ import { db } from './index'
 
 export interface UserParamsJSONB {
   password?: string
-  refreshJWT?: string
 }
 
 export interface UserAttributes {
@@ -17,23 +16,32 @@ export interface UserCreationAttributes
   extends Sequelize.Optional<UserAttributes, "id"> {
 }
 
-export const UserFactory = () => {
+export interface IUserType
+  extends Sequelize.Model<UserAttributes, UserCreationAttributes>,
+    UserAttributes {
+}
 
-  class User extends Sequelize.Model<UserAttributes, UserCreationAttributes>
-    implements UserAttributes {
-    public id: string
-    public name: string
-    public email!: string
-    public paramsJSONB?: UserParamsJSONB
+export interface IUserDefineType
+  extends Sequelize.ModelDefined<UserAttributes, UserCreationAttributes> {
+}
 
-    public readonly createdAt!: Date
-    public readonly updatedAt!: Date
+class User
+  extends Sequelize.Model<UserAttributes, UserCreationAttributes>
+  implements IUserType {
+  public id: string
+  public name: string
+  public email!: string
+  public paramsJSONB?: UserParamsJSONB
 
-    public static associations: {
-      // define association here
-    }
+  public readonly createdAt!: Date
+  public readonly updatedAt!: Date
+
+  public static associations: {
+    // define association here
   }
+}
 
+export const UserFactory = () => {
   User.init(
     {
       id: {
@@ -51,6 +59,9 @@ export const UserFactory = () => {
       },
       paramsJSONB: {
         type: Sequelize.DataTypes.JSONB,
+        set( val: object ) {
+          this.setDataValue( 'paramsJSONB', {...this.paramsJSONB, ...val} )
+        }
       }
     },
     {
