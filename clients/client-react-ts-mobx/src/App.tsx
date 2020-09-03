@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import CssBaseline from '@material-ui/core/CssBaseline'
-import Container from '@material-ui/core/Container'
 import { AppBarComponent } from './components/AppBar/AppBarComponent'
 import { useObserver } from 'mobx-react-lite'
 import { useAppStore } from './store/AppStoresContext'
+import { RouteSwitchComponent } from './routes/RouteSwitchComponent'
+import { MainLayout } from './layouts/MainLayout'
 
 function App() {
   const {appStore, authStore} = useAppStore()
@@ -17,6 +18,15 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [] )
 
+  const RouteSwitch = useMemo( () => {
+    {
+      console.log( `App: RouteSwitch` )
+    }
+    return (
+      <RouteSwitchComponent/>
+    )
+  }, [authStore.isAuth] )
+
   return useObserver( () =>
     <>
       {console.log( `App: Render` )}
@@ -26,9 +36,7 @@ function App() {
           : <>
             <CssBaseline/>
             <AppBarComponent/>
-            <Container maxWidth="lg">
-              <h1>Hi!</h1>
-            </Container>
+            <MainLayout page={RouteSwitch}/>
           </>
       }
     </>
