@@ -1,13 +1,14 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
+import Box from '@material-ui/core/Box'
 import IconButton from '@material-ui/core/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
 
-const useStyles = makeStyles( ( theme ) => ({
+const useStyles = makeStyles( ( theme: Theme ) => createStyles( {
   root: {
     flexGrow: 1,
   },
@@ -17,22 +18,43 @@ const useStyles = makeStyles( ( theme ) => ({
   title: {
     flexGrow: 1,
   },
-}) )
+} ) )
 
 export const AppBarComponent = () => {
   const classes = useStyles()
 
   return (
-    <AppBar position="static">
+    <AppBar
+      position="static"
+    >
       <Toolbar>
-        <IconButton edge="start" className={classes.menuButton} color="inherit"
-                    aria-label="menu">
+        <IconButton
+          edge="start"
+          className={classes.menuButton}
+          color="inherit"
+          aria-label="menu"
+        >
           <MenuIcon/>
         </IconButton>
-        <Typography variant="h6" className={classes.title}>
+
+        <Typography
+          variant="h6"
+          className={classes.title}
+        >
           Core - ILI
         </Typography>
-        <Button color="inherit">Login</Button>
+
+        <Box mr={3}>
+          <Button
+            variant="outlined"
+            color="inherit"
+          >Sign IN</Button>
+        </Box>
+        <Button
+          variant="contained"
+          color="secondary"
+        >Sign UP</Button>
+
       </Toolbar>
     </AppBar>
   )
