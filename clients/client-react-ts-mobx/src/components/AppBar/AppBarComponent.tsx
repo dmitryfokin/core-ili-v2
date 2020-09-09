@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button'
 import Box from '@material-ui/core/Box'
 import IconButton from '@material-ui/core/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
+import { NavLink } from 'react-router-dom'
 
 const useStyles = makeStyles( ( theme: Theme ) => createStyles( {
   root: {
@@ -18,6 +19,10 @@ const useStyles = makeStyles( ( theme: Theme ) => createStyles( {
   title: {
     flexGrow: 1,
   },
+  link: {
+    color: 'inherit',
+    textDecoration: 'none'
+  }
 } ) )
 
 export const AppBarComponent = () => {
@@ -48,12 +53,22 @@ export const AppBarComponent = () => {
           <Button
             variant="outlined"
             color="inherit"
-          >Sign IN</Button>
+          >
+            <NavLink to={'/signin'}
+                     className={classes.link}
+            >Sign IN
+            </NavLink>
+          </Button>
         </Box>
         <Button
           variant="contained"
           color="secondary"
-        >Sign UP</Button>
+        >
+          <NavLink to={'/signup'}
+                   className={classes.link}
+          >Sign UP
+          </NavLink>
+        </Button>
 
       </Toolbar>
     </AppBar>

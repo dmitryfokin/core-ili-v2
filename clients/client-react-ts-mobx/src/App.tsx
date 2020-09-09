@@ -10,26 +10,20 @@ function App() {
   const {appStore, authStore} = useAppStore()
 
   useEffect( () => {
-
-    console.log( `App: useEffect: checkLoggedIn, firstLoad` )
-
     authStore.checkLoggedIn()
     appStore.firstLoad()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [] )
 
   const RouteSwitch = useMemo( () => {
-    {
-      console.log( `App: RouteSwitch` )
-    }
     return (
       <RouteSwitchComponent/>
     )
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [authStore.isAuth] )
 
   return useObserver( () =>
     <>
-      {console.log( `App: Render` )}
       {
         appStore.isFirstLoad
           ? <>Load page...</>

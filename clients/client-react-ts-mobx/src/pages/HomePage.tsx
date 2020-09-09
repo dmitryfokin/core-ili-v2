@@ -1,7 +1,7 @@
 import React from 'react'
 import Container from '@material-ui/core/Container'
 
-export const Home: React.FC = () => {
+export const HomePage: React.FC = () => {
   return (
     <Container maxWidth={'lg'}>
       <h2>Home page</h2>

@@ -6,6 +6,17 @@ export type AuthType = {
   token: string
 }
 
+export type AuthSigninType = {
+  email: string
+  password: string
+}
+
+export type AuthSignupType = {
+  name: string
+  email: string
+  password: string
+}
+
 export type AuthLocalStoreType = {
   id: string
   name: string
